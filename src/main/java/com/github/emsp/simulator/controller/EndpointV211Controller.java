@@ -28,6 +28,10 @@ public class EndpointV211Controller {
         endpoint.setIdentifier("locations");
         endpoint.setUrl("http://103.127.97.27:8081/ocpi/emsp/2.1.1/locations");
         endpointList.add(endpoint);
+        endpoint = new Endpoint();
+        endpoint.setIdentifier("commands");
+        endpoint.setUrl("http://103.127.97.27:8081/ocpi/emsp/2.1.1/commands");
+        endpointList.add(endpoint);
         endpoints.setEndpoints(endpointList);
         Response<Endpoints> endpointsResponse = new Response<>();
         endpointsResponse.setData(endpoints);
