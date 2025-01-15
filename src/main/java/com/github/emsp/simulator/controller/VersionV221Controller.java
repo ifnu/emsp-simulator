@@ -15,7 +15,7 @@ public class VersionV221Controller {
     
 
     @GetMapping("/ocpi/emsp/2.2.1/versions")
-    public ResponseEntity<Response<List<Version>>> getVersion221(){
+    public ResponseEntity<Response<List<Version>>> getVersion221(){ 
         //validate Token A
         Response<List<Version>> versionResponse = new Response<>();
         List<Version> versions = new ArrayList<>();
