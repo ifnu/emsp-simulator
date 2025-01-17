@@ -6,21 +6,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.emsp.simulator.model.CommandResponse;
 import com.github.emsp.simulator.model.CommandResult;
-import com.github.emsp.simulator.model.Response;
+import com.github.emsp.simulator.model.ResponseNoData;
 
 @RestController
 public class CommandV211Controller {
 
     @PostMapping("/ocpi/emsp/2.1.1/commands/{commandType}/{uid}")
-    public ResponseEntity<Response<CommandResponse>> postCommand(
+    public ResponseEntity<ResponseNoData> postCommand(
             @RequestBody CommandResult result,
             @PathVariable String commandType,
             @PathVariable String uid) {
-        Response<CommandResponse> response = new Response<>();
-        CommandResponse commandResponse = new CommandResponse();
-        commandResponse.setResult("ACCEPTED");
+        ResponseNoData response = new ResponseNoData();
         return ResponseEntity.ok().body(response);
     }
 }
