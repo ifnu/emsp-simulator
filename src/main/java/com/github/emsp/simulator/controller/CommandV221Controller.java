@@ -11,8 +11,8 @@ import com.github.emsp.simulator.model.Response;
 @RestController
 public class CommandV221Controller {
 
-    @PostMapping("/ocpi/emsp/2.2.1/commands/{commandType}")
-    public ResponseEntity<Response<CommandResponse>> postCommand(@PathVariable String commandType) {
+    @PostMapping("/ocpi/emsp/2.2.1/commands/{commandType}/{uid}")
+    public ResponseEntity<Response<CommandResponse>> postCommand(@PathVariable String commandType, @PathVariable String uid) {
         Response<CommandResponse> response = new Response<>();
         CommandResponse commandResponse = new CommandResponse();
         commandResponse.setResult("ACCEPTED");
