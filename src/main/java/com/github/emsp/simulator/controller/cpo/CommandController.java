@@ -13,12 +13,10 @@ import com.github.emsp.simulator.model.cpo.RemoteCommandResult;
 @RestController
 public class CommandController {
 
-    @PostMapping("/v1/locations/{locationId}/remotestartinternal/{connectorId}")
+    @PostMapping("/v1/locations/{locationId}/remotestartinternal")
     public ResponseEntity<RemoteCommandResult> postStartSession(
             @RequestBody LocationRemoteStartDto requestBody,
-            @PathVariable String locationId,
-            @PathVariable String connectorId,
-            @RequestParam String uniqueId) {
+            @PathVariable String locationId) {
 
         RemoteCommandResult response = new RemoteCommandResult();
         response.setType("START_SESSION");
