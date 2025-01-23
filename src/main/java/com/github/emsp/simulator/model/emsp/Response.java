@@ -1,4 +1,4 @@
-package com.github.emsp.simulator.model;
+package com.github.emsp.simulator.model.emsp;
 
 import java.util.Date;
 

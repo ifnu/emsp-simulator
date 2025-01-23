@@ -1,4 +1,4 @@
-package com.github.emsp.simulator.controller;
+package com.github.emsp.simulator.controller.emsp;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.emsp.simulator.model.CommandResult;
-import com.github.emsp.simulator.model.ResponseNoData;
+import com.github.emsp.simulator.model.emsp.CommandResult;
+import com.github.emsp.simulator.model.emsp.ResponseNoData;
 
 @RestController
 public class CommandV221Controller {
