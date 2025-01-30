@@ -41,12 +41,10 @@ public class CredentialV221Controller {
         r.setRole("EMSP");
         
 
-        List<BusinessDetail> businessDetails = new ArrayList<>();
         BusinessDetail bd = new BusinessDetail();
         bd.setName("EMSP Simulator");
         bd.setWebsite("https://emspsimulator.com");
-        businessDetails.add(bd);
-        r.setBusinessDetails(businessDetails);
+        r.setBusinessDetails(bd);
         
         Logo logo = new Logo();
         logo.setUrl("https://emspsimulator.com/logo.jpg");
