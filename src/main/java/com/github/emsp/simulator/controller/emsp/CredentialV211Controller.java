@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.emsp.simulator.model.emsp.BusinessDetail;
 import com.github.emsp.simulator.model.emsp.Credential211;
 import com.github.emsp.simulator.model.emsp.Logo;
+import com.github.emsp.simulator.model.emsp.Response;
 import com.github.emsp.simulator.model.emsp.ResponseNoData;
 
 @RestController
@@ -22,7 +23,9 @@ public class CredentialV211Controller {
     }
 
     @PostMapping("/ocpi/emsp/2.1.1/credentials")
-    public ResponseEntity<Credential211> postCredentials211() {
+    public ResponseEntity<Response<Credential211>> postCredentials211() {
+        Response<Credential211> r = new Response<>();
+        
         Credential211 c = new Credential211();
         c.setToken(UUID.randomUUID().toString());
         c.setUrl(("https://emspsimulator.com/ocpi/emsp/2.1.1/versions"));
@@ -39,6 +42,8 @@ public class CredentialV211Controller {
         logo.setHeight(400);
         bd.setLogo(logo);
         c.setBusinessDetails(bd);
-        return ResponseEntity.ok().body(c);
+
+        r.setData(c);
+        return ResponseEntity.ok().body(r);
     }
 }

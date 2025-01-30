@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.emsp.simulator.model.emsp.BusinessDetail;
+import com.github.emsp.simulator.model.emsp.Credential211;
 import com.github.emsp.simulator.model.emsp.Credential221;
 import com.github.emsp.simulator.model.emsp.Logo;
+import com.github.emsp.simulator.model.emsp.Response;
 import com.github.emsp.simulator.model.emsp.ResponseNoData;
 import com.github.emsp.simulator.model.emsp.Role;
 
@@ -25,7 +27,9 @@ public class CredentialV221Controller {
     }
 
     @PostMapping("/ocpi/emsp/2.2.1/credentials")
-    public ResponseEntity<Credential221> postCredentials221() {
+    public ResponseEntity<Response<Credential221>> postCredentials221() {
+        Response<Credential221> response = new Response<>();
+
         Credential221 c = new Credential221();
         c.setToken(UUID.randomUUID().toString());
         c.setUrl(("https://emspsimulator.com/ocpi/emsp/2.2.1/versions"));
@@ -45,7 +49,9 @@ public class CredentialV221Controller {
         logo.setHeight(400);
         bd.setLogo(logo);
         roles.add(r);
-        return ResponseEntity.ok().body(c);
+
+        response.setData(c);
+        return ResponseEntity.ok().body(response);
     }
 
 }
