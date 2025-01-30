@@ -5,18 +5,18 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Response<T> {
-    private String statusCode = "1000"; //success
+    private Integer statusCode = 1000; //success
     private String statusMessage = "Success";
     private Date timestamp = new Date();
 
     private T data;
 
     @JsonProperty("status_code")
-    public String getStatusCode() {
+    public Integer getStatusCode() {
         return statusCode;
     }
 
-    public void setStatusCode(String statusCode) {
+    public void setStatusCode(Integer statusCode) {
         this.statusCode = statusCode;
     }
 
