@@ -22,15 +22,15 @@ public class EndpointV211Controller {
         List<Endpoint> endpointList = new ArrayList<>();
         Endpoint endpoint = new Endpoint();
         endpoint.setIdentifier("credentials");
-        endpoint.setUrl("http://103.127.97.27:8081/ocpi/emsp/2.1.1/credentials");
+        endpoint.setUrl("https://emspsimulator.com/ocpi/emsp/2.1.1/credentials");
         endpointList.add(endpoint);
         endpoint = new Endpoint();
         endpoint.setIdentifier("locations");
-        endpoint.setUrl("http://103.127.97.27:8081/ocpi/emsp/2.1.1/locations");
+        endpoint.setUrl("https://emspsimulator.com/ocpi/emsp/2.1.1/locations");
         endpointList.add(endpoint);
         endpoint = new Endpoint();
         endpoint.setIdentifier("commands");
-        endpoint.setUrl("http://103.127.97.27:8081/ocpi/emsp/2.1.1/commands");
+        endpoint.setUrl("https://emspsimulator.com/ocpi/emsp/2.1.1/commands");
         endpointList.add(endpoint);
         endpoints.setEndpoints(endpointList);
         Response<Endpoints> endpointsResponse = new Response<>();

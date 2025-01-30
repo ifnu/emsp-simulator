@@ -1,34 +1,41 @@
 package com.github.emsp.simulator.controller.emsp;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.logging.Log;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.emsp.simulator.model.emsp.BusinessDetail;
-import com.github.emsp.simulator.model.emsp.Credential211;
+import com.github.emsp.simulator.model.emsp.Credential221;
 import com.github.emsp.simulator.model.emsp.Logo;
 import com.github.emsp.simulator.model.emsp.ResponseNoData;
+import com.github.emsp.simulator.model.emsp.Role;
 
 @RestController
-public class CredentialV211Controller {
+public class CredentialV221Controller {
 
-    @GetMapping("/ocpi/emsp/2.1.1/credentials")
-    public ResponseEntity<ResponseNoData> getCredentials211() {
+    @GetMapping("/ocpi/emsp/2.2.1/credentials")
+    public ResponseEntity<ResponseNoData> getCredentials221() {
         ResponseNoData response = new ResponseNoData();
         return ResponseEntity.ok().body(response);
     }
 
-    @PostMapping("/ocpi/emsp/2.1.1/credentials")
-    public ResponseEntity<Credential211> postCredentials211() {
-        Credential211 c = new Credential211();
+    @PostMapping("/ocpi/emsp/2.2.1/credentials")
+    public ResponseEntity<Credential221> postCredentials221() {
+        Credential221 c = new Credential221();
         c.setToken(UUID.randomUUID().toString());
-        c.setUrl(("https://emspsimulator.com/ocpi/emsp/2.1.1/versions"));
-        c.setCountryCode("ID");
-        c.setPartyId("IFN");
-        
+        c.setUrl(("https://emspsimulator.com/ocpi/emsp/2.2.1/versions"));
+        List<Role> roles = new ArrayList<>();
+        c.setRoles(roles);
+        Role r = new Role();
+        r.setCountryCode("ID");
+        r.setPartyId("IFN");
+        r.setRole("EMSP");
         BusinessDetail bd = new BusinessDetail();
         bd.setName("EMSP Simulator");
         bd.setWebsite("https://emspsimulator.com");
@@ -38,7 +45,8 @@ public class CredentialV211Controller {
         logo.setWidth(400);
         logo.setHeight(400);
         bd.setLogo(logo);
-        c.setBusinessDetails(bd);
+        roles.add(r);
         return ResponseEntity.ok().body(c);
     }
+
 }

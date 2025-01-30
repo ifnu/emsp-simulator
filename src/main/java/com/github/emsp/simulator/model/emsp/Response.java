@@ -2,6 +2,8 @@ package com.github.emsp.simulator.model.emsp;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Response<T> {
     private String statusCode = "1000"; //success
     private String statusMessage = "Success";
@@ -9,6 +11,7 @@ public class Response<T> {
 
     private T data;
 
+    @JsonProperty("status_code")
     public String getStatusCode() {
         return statusCode;
     }
@@ -17,6 +20,7 @@ public class Response<T> {
         this.statusCode = statusCode;
     }
 
+    @JsonProperty("status_message")
     public String getStatusMessage() {
         return statusMessage;
     }
