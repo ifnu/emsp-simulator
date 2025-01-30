@@ -19,8 +19,8 @@ public class VersionV221Controller {
         //validate Token A
         Response<List<Version>> versionResponse = new Response<>();
         List<Version> versions = new ArrayList<>();
-        versions.add(new Version("2.1.1", "http://103.127.97.27:8081/ocpi/emsp/2.1.1/"));
-        versions.add(new Version("2.2.1", "http://103.127.97.27:8081/ocpi/emsp/2.2.1/"));
+        versions.add(new Version("2.1.1", "https://emspsimulator.com/ocpi/emsp/2.1.1/"));
+        versions.add(new Version("2.2.1", "https://emspsimulator.com/ocpi/emsp/2.2.1/"));
         versionResponse.setData(versions);
         return ResponseEntity.ok().body(versionResponse);
 
