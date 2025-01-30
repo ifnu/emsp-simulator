@@ -40,6 +40,7 @@ public class CredentialV211Controller {
         logo.setThumbnail("https://emspsimulator.com/logo-thumbnail.jpg");
         logo.setWidth(400);
         logo.setHeight(400);
+        logo.setCategory("OTHER");
         bd.setLogo(logo);
         c.setBusinessDetails(bd);
 

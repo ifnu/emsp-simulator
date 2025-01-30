@@ -3,7 +3,7 @@ package com.github.emsp.simulator.model.emsp;
 public class Logo {
     private String url;
     private String thumbnail;
-    private String category;
+    private String category = "OTHER"; //CHARGER, ENTRACE, LOCATION, NETWORK, OPERATOR, OTHER, OWNER
     private String type;
     private Integer width;
     private Integer height;

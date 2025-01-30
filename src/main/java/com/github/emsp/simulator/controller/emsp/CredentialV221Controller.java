@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.emsp.simulator.model.emsp.BusinessDetail;
-import com.github.emsp.simulator.model.emsp.Credential211;
 import com.github.emsp.simulator.model.emsp.Credential221;
 import com.github.emsp.simulator.model.emsp.Logo;
 import com.github.emsp.simulator.model.emsp.Response;
@@ -47,6 +46,7 @@ public class CredentialV221Controller {
         logo.setThumbnail("https://emspsimulator.com/logo-thumbnail.jpg");
         logo.setWidth(400);
         logo.setHeight(400);
+        logo.setCategory("OTHER");
         bd.setLogo(logo);
         roles.add(r);
 
