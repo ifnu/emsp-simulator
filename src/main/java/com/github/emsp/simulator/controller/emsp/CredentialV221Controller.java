@@ -47,6 +47,7 @@ public class CredentialV221Controller {
         logo.setWidth(400);
         logo.setHeight(400);
         logo.setCategory("OTHER");
+        logo.setType("jpg");
         bd.setLogo(logo);
         roles.add(r);
 
