@@ -32,15 +32,22 @@ public class CredentialV221Controller {
         Credential221 c = new Credential221();
         c.setToken(UUID.randomUUID().toString());
         c.setUrl(("https://emspsimulator.com/ocpi/emsp/2.2.1/versions"));
+        
         List<Role> roles = new ArrayList<>();
         c.setRoles(roles);
         Role r = new Role();
         r.setCountryCode("ID");
         r.setPartyId("IFN");
         r.setRole("EMSP");
+        
+
+        List<BusinessDetail> businessDetails = new ArrayList<>();
         BusinessDetail bd = new BusinessDetail();
         bd.setName("EMSP Simulator");
         bd.setWebsite("https://emspsimulator.com");
+        businessDetails.add(bd);
+        r.setBusinessDetails(businessDetails);
+        
         Logo logo = new Logo();
         logo.setUrl("https://emspsimulator.com/logo.jpg");
         logo.setThumbnail("https://emspsimulator.com/logo-thumbnail.jpg");
@@ -51,6 +58,7 @@ public class CredentialV221Controller {
         bd.setLogo(logo);
         roles.add(r);
 
+    
         response.setData(c);
         return ResponseEntity.ok().body(response);
     }
