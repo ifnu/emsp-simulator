@@ -8,7 +8,7 @@ public class Role {
     private String role;
     private String partyId;
     private String countryCode;
-    private List<BusinessDetail> businessDetails;
+    private BusinessDetail businessDetails;
 
     public String getRole() {
         return role;
@@ -37,11 +37,11 @@ public class Role {
     }
 
     @JsonProperty("business_details")
-    public List<BusinessDetail> getBusinessDetails() {
+    public BusinessDetail getBusinessDetails() {
         return businessDetails;
     }
 
-    public void setBusinessDetails(List<BusinessDetail> businessDetails) {
+    public void setBusinessDetails(BusinessDetail businessDetails) {
         this.businessDetails = businessDetails;
     }
 
