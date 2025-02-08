@@ -91,6 +91,16 @@
                                 <th
                                     class="text-sm uppercase tracking-wide font-medium text-gray-900 text-left py-1 px-1 bg-emerald-50 rounded-tr-md rounded-br-md">
                                     <button
+                                        @click="direction = sort != 'uid' ? 'asc' : direction === 'asc' ? 'desc' : 'asc';sort = 'uid';"
+                                        class="text-sm uppercase text-gray-900 text-left">
+                                        <i class=""
+                                            :class="sort === 'uid' && direction === 'asc'? 'ri-sort-asc' : sort === 'uid' && direction === 'desc'? 'ri-sort-desc': 'ri-menu-5-line'"></i>
+                                        UID
+                                    </button>
+                                </th>
+                                <th
+                                    class="text-sm uppercase tracking-wide font-medium text-gray-900 text-left py-1 px-1 bg-emerald-50 rounded-tr-md rounded-br-md">
+                                    <button
                                         @click="direction = sort != 'module' ? 'asc' : direction === 'asc' ? 'desc' : 'asc';sort = 'module';"
                                         class="text-sm uppercase text-gray-900 text-left">
                                         <i class=""
@@ -142,6 +152,7 @@
                         </thead>
                         <template x-for="request in requests" :key="request.id" class="text-[12px] font-medium">
                             <tr class="border-b border-b-gray-100">
+                                <td class="py-1 px-1" x-text="request.uid"></td>
                                 <td class="py-1 px-1" x-text="request.module"></td>
                                 <td class="py-1 px-1" x-text="request.party"></td>
                                 <td class="py-1 px-1" x-text="request.version"></td>
