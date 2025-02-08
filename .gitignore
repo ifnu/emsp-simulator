@@ -34,3 +34,5 @@ build/
 
 ### Deployment Script ###
 deploy.sh
+
+/node_modules
