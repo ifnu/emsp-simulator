@@ -1,5 +1,7 @@
 package com.github.emsp.simulator.controller.cpo;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +33,7 @@ public class CommandController {
         request.setParty("eMSP");
         request.setVersion("ocpi v2.1.1");
         request.setUid(requestBody.getUid());
+        request.setDate(new Date());
         try {
             request.setData(objectMapper.writeValueAsString(requestBody));
         } catch (Exception e) {
@@ -56,6 +59,7 @@ public class CommandController {
         request.setParty("eMSP");
         request.setVersion("ocpi v2.1.1");
         request.setUid(uniqueId);
+        request.setDate(new Date());
         try {
             request.setData("sessionId:" + sessionId + ", locationId:" + locationId);
         } catch (Exception e) {
@@ -81,6 +85,7 @@ public class CommandController {
         request.setParty("eMSP");
         request.setVersion("ocpi v2.1.1");
         request.setUid(uniqueId);
+        request.setDate(new Date());
         try {
             request.setData("connectorId:" + connectorId + ", locationId:" + locationId);
         } catch (Exception e) {
