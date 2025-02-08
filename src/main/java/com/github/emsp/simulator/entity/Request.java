@@ -88,5 +88,13 @@ public class Request {
         this.party = party;
     }
 
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
     
 }
