@@ -30,7 +30,7 @@ public class CommandController {
 
         Request request = new Request();
         request.setModule("commands remotestartinternal");
-        request.setParty("eMSP");
+        request.setParty("CPO");
         request.setVersion("ocpi v2.1.1");
         request.setUid(requestBody.getUid());
         request.setDate(new Date());
