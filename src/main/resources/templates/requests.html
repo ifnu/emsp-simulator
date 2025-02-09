@@ -151,12 +151,12 @@
                         </thead>
                         <template x-for="request in requests" :key="request.id" class="text-[12px] font-medium">
                             <tr class="border-b border-b-gray-100">
-                                <td class="py-1 px-1" x-text="request.uid"></td>
-                                <td class="py-1 px-1" x-text="request.module"></td>
-                                <td class="py-1 px-1" x-text="request.party"></td>
-                                <td class="py-1 px-1" x-text="request.version"></td>
-                                <td class="py-1 px-1" x-text="request.date"></td>
-                                <td class="text-xs" x-text="request.data"></td>
+                                <td class="p-1 text-xs" x-text="request.uid"></td>
+                                <td class="p-1 text-xs" x-text="request.module"></td>
+                                <td class="p-1 text-xs" x-text="request.party"></td>
+                                <td class="p-1 text-xs" x-text="request.version"></td>
+                                <td class="p-1 text-xs" x-text="request.date"></td>
+                                <td class="p-1 text-xs" x-text="request.data"></td>
                             </tr>
                         </template>
                     </table>
