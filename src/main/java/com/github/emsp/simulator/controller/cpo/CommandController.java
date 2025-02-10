@@ -31,7 +31,7 @@ public class CommandController {
         Request request = new Request();
         request.setModule("commands remotestartinternal");
         request.setParty("CPO");
-        request.setVersion("ocpi v2.1.1");
+        request.setVersion("N/A");
         request.setUid(requestBody.getUid());
         request.setDate(new Date());
         try {
@@ -57,7 +57,7 @@ public class CommandController {
         Request request = new Request();
         request.setModule("commands remotestopinternal");
         request.setParty("eMSP");
-        request.setVersion("ocpi v2.1.1");
+        request.setVersion("N/A");
         request.setUid(uniqueId);
         request.setDate(new Date());
         try {
@@ -83,7 +83,7 @@ public class CommandController {
         Request request = new Request();
         request.setModule("commands unlockconnectorinternal");
         request.setParty("eMSP");
-        request.setVersion("ocpi v2.1.1");
+        request.setVersion("N/A");
         request.setUid(uniqueId);
         request.setDate(new Date());
         try {
