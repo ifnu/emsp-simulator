@@ -37,7 +37,7 @@ public class Request {
     private Date date;
 
     @Lob
-    @Column(name = "data", nullable = false)
+    @Column(name = "data", nullable = false, length = 65535)
     private String data;
 
     public String getId() {

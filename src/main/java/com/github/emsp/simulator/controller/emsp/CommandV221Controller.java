@@ -32,7 +32,7 @@ public class CommandV221Controller {
         Request request = new Request();
         request.setModule("commands " + commandType);
         request.setParty("eMSP");
-        request.setVersion("ocpi v2.1.1");
+        request.setVersion("ocpi v2.2.1");
         request.setUid(uid);
         request.setDate(new Date());
         try {
