@@ -19,7 +19,7 @@ public class RequestRestController {
 
     @GetMapping("/requests")
     public List<Request> getAll() {
-        return repository.findAll();
+        return repository.findByOrderByDateDesc();
     }
 
 }
