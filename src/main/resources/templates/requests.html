@@ -7,7 +7,7 @@
     <title>Requests</title>
     <link rel="stylesheet" href="/css/main.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
-    <script src="https://unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js" defer></script>
 
 </head>
 
@@ -83,6 +83,11 @@
                     </div>
                     <div class="font-medium ml-3" x-show="q.length > 0" x-text="'Searching for ' + q + ' requests'">
                     </div>
+                    <button
+                        class="ml-3 text-lg font-bold text-white  bg-rose-500 p-1 rounded-lg hover:shadow-lg hover:opacity-80 transition duration-300 ease-in-out disabled:bg-gray-300 disabled:text-gray-800 disabled:pointer-events-none"
+                        @click="clearReqest()">
+                        Clear Requests
+                    </button>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="table w-full mt-6 mx-auto">
@@ -108,7 +113,8 @@
                                         Module
                                     </button>
                                 </th>
-                                <th class="text-sm uppercase tracking-wide font-medium text-gray-900 text-left py-1 px-1 bg-emerald-50 rounded-tr-md rounded-br-md">
+                                <th
+                                    class="text-sm uppercase tracking-wide font-medium text-gray-900 text-left py-1 px-1 bg-emerald-50 rounded-tr-md rounded-br-md">
                                     <button
                                         @click="direction = sort != 'party' ? 'desc' : direction === 'desc' ? 'asc' : 'desc';sort = 'party';"
                                         class="text-sm uppercase text-gray-900 text-left">
@@ -176,6 +182,10 @@
                             .then(data => {
                                 this.requests = data;
                             });
+                    },
+                    clearReqest() {
+                        fetch("/api/requests", { method: 'DELETE' });
+                        this.xInit();
                     }
                 }
             }
