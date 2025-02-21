@@ -2,9 +2,11 @@ package com.github.emsp.simulator.controller.emsp;
 
 import java.util.UUID;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.emsp.simulator.model.emsp.BusinessDetail;
@@ -17,21 +19,30 @@ import com.github.emsp.simulator.model.emsp.ResponseNoData;
 public class CredentialV211Controller {
 
     @GetMapping("/ocpi/emsp/2.1.1/credentials")
-    public ResponseEntity<ResponseNoData> getCredentials211() {
+    public ResponseEntity<ResponseNoData> getCredentials211(@RequestHeader("Authorization") String token) {
+
+        if (token == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
         ResponseNoData response = new ResponseNoData();
         return ResponseEntity.ok().body(response);
     }
 
     @PostMapping("/ocpi/emsp/2.1.1/credentials")
-    public ResponseEntity<Response<Credential211>> postCredentials211() {
+    public ResponseEntity<Response<Credential211>> postCredentials211(
+            @RequestHeader("Authorization") String token) {
+
+        if (token == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
         Response<Credential211> r = new Response<>();
-        
+
         Credential211 c = new Credential211();
         c.setToken(UUID.randomUUID().toString());
         c.setUrl(("https://emspsimulator.com/ocpi/emsp/2.1.1/versions"));
         c.setCountryCode("ID");
         c.setPartyId("IFN");
-        
+
         BusinessDetail bd = new BusinessDetail();
         bd.setName("EMSP Simulator");
         bd.setWebsite("https://emspsimulator.com");

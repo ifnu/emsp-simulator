@@ -3,8 +3,10 @@ package com.github.emsp.simulator.controller.emsp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.emsp.simulator.model.emsp.Endpoint;
@@ -15,8 +17,13 @@ import com.github.emsp.simulator.model.emsp.Response;
 public class EndpointV221Controller {
 
     @GetMapping("/ocpi/emsp/2.2.1/")
-    public ResponseEntity<Response<Endpoints>> getEndpoint211(){
-        //validate Token A
+    public ResponseEntity<Response<Endpoints>> getEndpoint211(@RequestHeader("Authorization") String token) {
+
+        if(token == null){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
+
+        // validate Token A
         Endpoints endpoints = new Endpoints();
         endpoints.setVersion("2.2.1");
         List<Endpoint> endpointList = new ArrayList<>();

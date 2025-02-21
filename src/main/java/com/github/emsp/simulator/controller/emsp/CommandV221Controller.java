@@ -3,10 +3,12 @@ package com.github.emsp.simulator.controller.emsp;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,12 +24,17 @@ public class CommandV221Controller {
     private RequestRepository repository;
 
     private ObjectMapper objectMapper = new ObjectMapper();
-    
+
     @PostMapping("/ocpi/emsp/2.2.1/commands/{commandType}/{uid}")
     public ResponseEntity<ResponseNoData> postCommand(
             @RequestBody CommandResult result,
             @PathVariable String commandType,
-            @PathVariable String uid) {
+            @PathVariable String uid,
+            @RequestHeader("Authorization") String token) {
+
+        if (token == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
 
         Request request = new Request();
         request.setModule("commands " + commandType);
