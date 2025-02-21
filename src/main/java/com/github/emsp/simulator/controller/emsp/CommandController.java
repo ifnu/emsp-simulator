@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.emsp.simulator.entity.Request;
-import com.github.emsp.simulator.model.emsp.CommandResult;
+import com.github.emsp.simulator.model.emsp.Result;
 import com.github.emsp.simulator.model.emsp.ResponseNoData;
 import com.github.emsp.simulator.repository.RequestRepository;
 
@@ -27,7 +27,7 @@ public class CommandController {
 
     @PostMapping("/ocpi/emsp/2.2.1/commands/{commandType}/{uid}")
     public ResponseEntity<ResponseNoData> postCommandV221(
-            @RequestBody CommandResult result,
+            @RequestBody Result result,
             @PathVariable String commandType,
             @PathVariable String uid,
             @RequestHeader(name = "Authorization", required = false) String token) {
@@ -56,7 +56,7 @@ public class CommandController {
 
     @PostMapping("/ocpi/emsp/2.1.1/commands/{commandType}/{uid}")
     public ResponseEntity<ResponseNoData> postCommandV211(
-            @RequestBody CommandResult result,
+            @RequestBody Result result,
             @PathVariable String commandType,
             @PathVariable String uid,
             @RequestHeader(name = "Authorization", required = false) String token) {

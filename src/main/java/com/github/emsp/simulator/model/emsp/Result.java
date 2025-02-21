@@ -1,6 +1,6 @@
 package com.github.emsp.simulator.model.emsp;
 
-public class CommandResult {
+public class Result {
     private String result;
 
     public String getResult() {
