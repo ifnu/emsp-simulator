@@ -17,7 +17,7 @@ import com.github.emsp.simulator.model.emsp.Response;
 public class EndpointController {
 
     @GetMapping("/ocpi/emsp/2.1.1/")
-    public ResponseEntity<Response<Endpoints>> getEndpoint211(@RequestHeader("Authorization") String token) {
+    public ResponseEntity<Response<Endpoints>> getEndpoint211(@RequestHeader(name = "Authorization", required = false) String token) {
 
         if (token == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
@@ -46,7 +46,7 @@ public class EndpointController {
     }
 
     @GetMapping("/ocpi/emsp/2.2.1/")
-    public ResponseEntity<Response<Endpoints>> getEndpoint221(@RequestHeader("Authorization") String token) {
+    public ResponseEntity<Response<Endpoints>> getEndpoint221(@RequestHeader(name = "Authorization", required = false) String token) {
 
         if(token == null){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);

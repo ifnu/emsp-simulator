@@ -30,7 +30,7 @@ public class CommandController {
             @RequestBody CommandResult result,
             @PathVariable String commandType,
             @PathVariable String uid,
-            @RequestHeader("Authorization") String token) {
+            @RequestHeader(name = "Authorization", required = false) String token) {
 
         if (token == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
@@ -59,7 +59,7 @@ public class CommandController {
             @RequestBody CommandResult result,
             @PathVariable String commandType,
             @PathVariable String uid,
-            @RequestHeader("Authorization") String token) {
+            @RequestHeader(name = "Authorization", required = false) String token) {
 
         if (token == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);

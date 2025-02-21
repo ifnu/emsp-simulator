@@ -23,7 +23,7 @@ import com.github.emsp.simulator.model.emsp.Role;
 public class CredentialController {
 
     @GetMapping("/ocpi/emsp/2.1.1/credentials")
-    public ResponseEntity<ResponseNoData> getCredentials211(@RequestHeader("Authorization") String token) {
+    public ResponseEntity<ResponseNoData> getCredentials211(@RequestHeader(name = "Authorization", required = false) String token) {
 
         if (token == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
@@ -34,7 +34,7 @@ public class CredentialController {
 
     @PostMapping("/ocpi/emsp/2.1.1/credentials")
     public ResponseEntity<Response<Credential211>> postCredentials211(
-            @RequestHeader("Authorization") String token) {
+            @RequestHeader(name = "Authorization", required = false) String token) {
 
         if (token == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
@@ -65,7 +65,7 @@ public class CredentialController {
     }
 
     @GetMapping("/ocpi/emsp/2.2.1/credentials")
-    public ResponseEntity<ResponseNoData> getCredentials221(@RequestHeader("Authorization") String token) {
+    public ResponseEntity<ResponseNoData> getCredentials221(@RequestHeader(name = "Authorization", required = false) String token) {
 
         if (token == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
@@ -76,7 +76,7 @@ public class CredentialController {
 
     @PostMapping("/ocpi/emsp/2.2.1/credentials")
     public ResponseEntity<Response<Credential221>> postCredentials221(
-            @RequestHeader("Authorization") String token) {
+            @RequestHeader(name = "Authorization", required = false) String token) {
 
         if (token == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);

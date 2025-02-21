@@ -29,7 +29,7 @@ public class SessionController {
             @PathVariable String countryCode,
             @PathVariable String partyId,
             @PathVariable String uid,
-            @RequestHeader("Authorization") String token) {
+            @RequestHeader(name = "Authorization", required = false) String token) {
 
         if (token == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
@@ -53,7 +53,7 @@ public class SessionController {
             @PathVariable String countryCode,
             @PathVariable String partyId,
             @PathVariable String uid,
-            @RequestHeader("Authorization") String token) {
+            @RequestHeader(name = "Authorization", required = false) String token) {
 
         if (token == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);

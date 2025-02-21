@@ -16,7 +16,7 @@ import com.github.emsp.simulator.model.emsp.Version;
 public class VersionController {
 
     @GetMapping("/ocpi/emsp/2.1.1/versions")
-    public ResponseEntity<Response<List<Version>>> getVersion211(@RequestHeader("Authorization") String token) {
+    public ResponseEntity<Response<List<Version>>> getVersion211(@RequestHeader(name = "Authorization", required = false) String token) {
 
         if (token == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
@@ -32,7 +32,7 @@ public class VersionController {
     }
 
     @GetMapping("/ocpi/emsp/2.2.1/versions")
-    public ResponseEntity<Response<List<Version>>> getVersion221(@RequestHeader("Authorization") String token) {
+    public ResponseEntity<Response<List<Version>>> getVersion221(@RequestHeader(name = "Authorization", required = false) String token) {
 
         if (token == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
