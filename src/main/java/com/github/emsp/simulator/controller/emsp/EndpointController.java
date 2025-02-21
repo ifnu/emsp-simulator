@@ -14,7 +14,7 @@ import com.github.emsp.simulator.model.emsp.Endpoints;
 import com.github.emsp.simulator.model.emsp.Response;
 
 @RestController
-public class EndpointV211Controller {
+public class EndpointController {
 
     @GetMapping("/ocpi/emsp/2.1.1/")
     public ResponseEntity<Response<Endpoints>> getEndpoint211(@RequestHeader("Authorization") String token) {
@@ -37,6 +37,37 @@ public class EndpointV211Controller {
         endpoint = new Endpoint();
         endpoint.setIdentifier("commands");
         endpoint.setUrl("https://emspsimulator.com/ocpi/emsp/2.1.1/commands");
+        endpointList.add(endpoint);
+        endpoints.setEndpoints(endpointList);
+        Response<Endpoints> endpointsResponse = new Response<>();
+        endpointsResponse.setData(endpoints);
+        return ResponseEntity.ok().body(endpointsResponse);
+
+    }
+
+    @GetMapping("/ocpi/emsp/2.2.1/")
+    public ResponseEntity<Response<Endpoints>> getEndpoint221(@RequestHeader("Authorization") String token) {
+
+        if(token == null){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
+
+        // validate Token A
+        Endpoints endpoints = new Endpoints();
+        endpoints.setVersion("2.2.1");
+        List<Endpoint> endpointList = new ArrayList<>();
+        Endpoint endpoint = new Endpoint();
+        endpoint.setIdentifier("credentials");
+        endpoint.setUrl("https://emspsimulator.com/ocpi/emsp/2.2.1/credentials");
+        endpointList.add(endpoint);
+        endpoint = new Endpoint();
+        endpoint.setIdentifier("locations");
+        endpoint.setUrl("https://emspsimulator.com/ocpi/emsp/2.2.1/locations");
+        endpointList.add(endpoint);
+        endpoints.setEndpoints(endpointList);
+        endpoint = new Endpoint();
+        endpoint.setIdentifier("commands");
+        endpoint.setUrl("https://emspsimulator.com/ocpi/emsp/2.2.1/commands");
         endpointList.add(endpoint);
         endpoints.setEndpoints(endpointList);
         Response<Endpoints> endpointsResponse = new Response<>();

@@ -16,14 +16,39 @@ import com.github.emsp.simulator.model.emsp.ResponseNoData;
 import com.github.emsp.simulator.repository.RequestRepository;
 
 @RestController
-public class SessionV221Controller {
+public class SessionController {
 
     // PUT and Patch
     @Autowired
     private RequestRepository repository;
 
+    // https://emspsimulator.com/ocpi/emsp/2.1.1/sessions/ID/HWK/443E6420-0239-49D6-A714-9BF62AFAC16B'
+    @PutMapping("/ocpi/emsp/2.1.1/sessions/{countryCode}/{partyId}/{uid}")
+    public ResponseEntity<ResponseNoData> postSessionV211(
+            @RequestBody String json,
+            @PathVariable String countryCode,
+            @PathVariable String partyId,
+            @PathVariable String uid,
+            @RequestHeader("Authorization") String token) {
+
+        if (token == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
+  
+        Request request = new Request();
+        request.setUid(uid);
+        request.setParty("eMSP");
+        request.setVersion("ocpi v2.1.1");
+        request.setModule("sessions");
+        request.setDate(new Date());
+        request.setData("countryCode:" + countryCode + ", partyId:" + partyId + ", json:" + json);
+        repository.save(request);
+        ResponseNoData responseNoData = new ResponseNoData();
+        return ResponseEntity.ok().body(responseNoData);
+    }
+
     @PutMapping("/ocpi/emsp/2.2.1/sessions/{countryCode}/{partyId}/{uid}")
-    public ResponseEntity<ResponseNoData> postSession(
+    public ResponseEntity<ResponseNoData> postSessionV221(
             @RequestBody String json,
             @PathVariable String countryCode,
             @PathVariable String partyId,
@@ -45,5 +70,4 @@ public class SessionV221Controller {
         ResponseNoData responseNoData = new ResponseNoData();
         return ResponseEntity.ok().body(responseNoData);
     }
-
 }

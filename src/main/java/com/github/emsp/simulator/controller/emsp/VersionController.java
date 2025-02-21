@@ -13,7 +13,7 @@ import com.github.emsp.simulator.model.emsp.Response;
 import com.github.emsp.simulator.model.emsp.Version;
 
 @RestController
-public class VersionV211Controller {
+public class VersionController {
 
     @GetMapping("/ocpi/emsp/2.1.1/versions")
     public ResponseEntity<Response<List<Version>>> getVersion211(@RequestHeader("Authorization") String token) {
@@ -29,7 +29,20 @@ public class VersionV211Controller {
         versions.add(new Version("2.2.1", "https://emspsimulator.com/ocpi/emsp/2.2.1/"));
         versionResponse.setData(versions);
         return ResponseEntity.ok().body(versionResponse);
-
     }
 
+    @GetMapping("/ocpi/emsp/2.2.1/versions")
+    public ResponseEntity<Response<List<Version>>> getVersion221(@RequestHeader("Authorization") String token) {
+
+        if (token == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
+        // validate Token A
+        Response<List<Version>> versionResponse = new Response<>();
+        List<Version> versions = new ArrayList<>();
+        versions.add(new Version("2.1.1", "https://emspsimulator.com/ocpi/emsp/2.1.1/"));
+        versions.add(new Version("2.2.1", "https://emspsimulator.com/ocpi/emsp/2.2.1/"));
+        versionResponse.setData(versions);
+        return ResponseEntity.ok().body(versionResponse);
+    }
 }

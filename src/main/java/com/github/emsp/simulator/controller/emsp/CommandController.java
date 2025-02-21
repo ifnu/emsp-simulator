@@ -18,7 +18,7 @@ import com.github.emsp.simulator.model.emsp.ResponseNoData;
 import com.github.emsp.simulator.repository.RequestRepository;
 
 @RestController
-public class CommandV221Controller {
+public class CommandController {
 
     @Autowired
     private RequestRepository repository;
@@ -26,7 +26,7 @@ public class CommandV221Controller {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @PostMapping("/ocpi/emsp/2.2.1/commands/{commandType}/{uid}")
-    public ResponseEntity<ResponseNoData> postCommand(
+    public ResponseEntity<ResponseNoData> postCommandV221(
             @RequestBody CommandResult result,
             @PathVariable String commandType,
             @PathVariable String uid,
@@ -50,6 +50,34 @@ public class CommandV221Controller {
 
         repository.save(request);
 
+        ResponseNoData response = new ResponseNoData();
+        return ResponseEntity.ok().body(response);
+    }
+
+    @PostMapping("/ocpi/emsp/2.1.1/commands/{commandType}/{uid}")
+    public ResponseEntity<ResponseNoData> postCommandV211(
+            @RequestBody CommandResult result,
+            @PathVariable String commandType,
+            @PathVariable String uid,
+            @RequestHeader("Authorization") String token) {
+
+        if (token == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
+
+        Request request = new Request();
+        request.setModule("commands " + commandType);
+        request.setParty("eMSP");
+        request.setVersion("ocpi v2.1.1");
+        request.setUid(uid);
+        request.setDate(new Date());
+        try {
+            request.setData(objectMapper.writeValueAsString(result));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        repository.save(request);
         ResponseNoData response = new ResponseNoData();
         return ResponseEntity.ok().body(response);
     }
