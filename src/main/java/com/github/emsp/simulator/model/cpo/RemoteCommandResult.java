@@ -1,10 +1,13 @@
 package com.github.emsp.simulator.model.cpo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class RemoteCommandResult {
     public String type;
 
     public boolean isOk = false;
 
+    @JsonProperty("Type")
     public String getType() {
         return type;
     }
@@ -13,6 +16,7 @@ public class RemoteCommandResult {
         this.type = type;
     }
 
+    @JsonProperty("IsOk")
     public boolean getIsOk() {
         return isOk;
     }
