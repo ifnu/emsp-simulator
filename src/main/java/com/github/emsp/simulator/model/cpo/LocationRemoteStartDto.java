@@ -1,5 +1,7 @@
 package com.github.emsp.simulator.model.cpo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class LocationRemoteStartDto {
     public int connectorId;
 
@@ -19,6 +21,7 @@ public class LocationRemoteStartDto {
 
     public String requestUniqueId;
 
+    @JsonProperty("ConnectorId")
     public int getConnectorId() {
         return connectorId;
     }
@@ -27,6 +30,7 @@ public class LocationRemoteStartDto {
         this.connectorId = connectorId;
     }
 
+    @JsonProperty("PartyId")
     public String getPartyId() {
         return partyId;
     }
@@ -35,6 +39,7 @@ public class LocationRemoteStartDto {
         this.partyId = partyId;
     }
 
+    @JsonProperty("AuthorizationReference")
     public String getAuthorizationReference() {
         return authorizationReference;
     }
@@ -43,6 +48,7 @@ public class LocationRemoteStartDto {
         this.authorizationReference = authorizationReference;
     }
 
+    @JsonProperty("AuthId")
     public String getAuthId() {
         return authId;
     }
@@ -51,6 +57,7 @@ public class LocationRemoteStartDto {
         this.authId = authId;
     }
 
+    @JsonProperty("Uid")
     public String getUid() {
         return uid;
     }
@@ -59,6 +66,7 @@ public class LocationRemoteStartDto {
         this.uid = uid;
     }
 
+    @JsonProperty("Issuer")
     public String getIssuer() {
         return issuer;
     }
@@ -67,6 +75,7 @@ public class LocationRemoteStartDto {
         this.issuer = issuer;
     }
 
+    @JsonProperty("VisualNumber")
     public String getVisualNumber() {
         return visualNumber;
     }
@@ -75,6 +84,7 @@ public class LocationRemoteStartDto {
         this.visualNumber = visualNumber;
     }
 
+    @JsonProperty("EmsproviderId")
     public String getEmsproviderId() {
         return emsproviderId;
     }
@@ -83,6 +93,7 @@ public class LocationRemoteStartDto {
         this.emsproviderId = emsproviderId;
     }
 
+    @JsonProperty("RequestUniqueId")
     public String getRequestUniqueId() {
         return requestUniqueId;
     }
