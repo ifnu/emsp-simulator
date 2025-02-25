@@ -43,7 +43,7 @@ public class CommandController {
         repository.save(request);
 
         RemoteCommandResult response = new RemoteCommandResult();
-        response.setType("START_SESSION");
+        response.setReply("START_SESSION");
         response.setIsOk(true);
         return ResponseEntity.ok().body(response);
     }
@@ -69,7 +69,7 @@ public class CommandController {
         repository.save(request);
 
         RemoteCommandResult response = new RemoteCommandResult();
-        response.setType("STOP_SESSION");
+        response.setReply("STOP_SESSION");
         response.setIsOk(true);
         return ResponseEntity.ok().body(response);
     }
@@ -95,7 +95,7 @@ public class CommandController {
         repository.save(request);
         
         RemoteCommandResult response = new RemoteCommandResult();
-        response.setType("UNLOCK_CONNECTOR");
+        response.setReply("UNLOCK_CONNECTOR");
         response.setIsOk(true);
         return ResponseEntity.ok().body(response);
     }

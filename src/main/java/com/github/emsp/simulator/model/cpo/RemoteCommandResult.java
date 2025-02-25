@@ -3,17 +3,17 @@ package com.github.emsp.simulator.model.cpo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RemoteCommandResult {
-    public String type;
+    public String reply;
 
     public boolean isOk = false;
 
-    @JsonProperty("Type")
-    public String getType() {
-        return type;
+    @JsonProperty("Reply")
+    public String getReply() {
+        return reply;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setReply(String reply) {
+        this.reply = reply;
     }
 
     @JsonProperty("IsOk")
