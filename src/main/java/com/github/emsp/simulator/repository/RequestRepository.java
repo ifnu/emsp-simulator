@@ -13,4 +13,6 @@ public interface RequestRepository extends JpaRepository<Request, String>{
 
     List<Request> findByOrderByDateDesc();
 
+    List<Request> findByUidOrderByDateAsc(String uid);
+
 }
