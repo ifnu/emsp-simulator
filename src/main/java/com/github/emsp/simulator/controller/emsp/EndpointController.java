@@ -1,7 +1,6 @@
 package com.github.emsp.simulator.controller.emsp;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,17 +11,16 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.emsp.simulator.entity.Request;
 import com.github.emsp.simulator.model.emsp.Endpoint;
 import com.github.emsp.simulator.model.emsp.Endpoints;
 import com.github.emsp.simulator.model.emsp.Response;
-import com.github.emsp.simulator.repository.RequestRepository;
+import com.github.emsp.simulator.service.JitterSimulatorService;
 
 @RestController
 public class EndpointController {
 
     @Autowired
-    private RequestRepository repository;
+    private JitterSimulatorService service;
 
     @GetMapping("/ocpi/emsp/2.1.1/")
     public ResponseEntity<Response<Endpoints>> getEndpoint211(
@@ -35,34 +33,9 @@ public class EndpointController {
         if (token == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
-        if (status != null && uid != null && retry != null) {
-            
-            Integer currentRetry = 1;
-            List<Request> requests = repository.findByUidOrderByDateAsc(uid);
-            Request request = new Request();
-            if (!requests.isEmpty()) {
-                currentRetry = requests.size() + 1;
-                if (currentRetry >= retry) {
-                    status = 200;
-                }
-            }
-            if (timeout != null && timeout > 0 && currentRetry < retry) {
-                try {
-                    Thread.sleep(timeout * 1_000);
-                } catch (Exception ex) {
-                    //intentionally left blank
-                }
-            }
-            request.setModule("endpoint module");
-            request.setDate(new Date());
-            request.setParty("eMSP");
-            request.setVersion("ocpi v2.1.1");
-            request.setData("max retry:" + retry + ", retry: " + currentRetry + ", status:" + status);
-            request.setUid(uid);
-            repository.save(request);
-            if (status != 200) {
-                return ResponseEntity.status(status).body(null);
-            }
+        status = service.simulateJitter(uid, retry, status, timeout);
+        if(status != 200){
+            return ResponseEntity.status(status).body(null);
         }
         // validate Token A
         Endpoints endpoints = new Endpoints();
@@ -98,33 +71,9 @@ public class EndpointController {
         if (token == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
-        if (status != null && uid != null && retry != null) {
-            Integer currentRetry = 1;
-            List<Request> requests = repository.findByUidOrderByDateAsc(uid);
-            Request request = new Request();
-            if (!requests.isEmpty()) {
-                currentRetry = requests.size() + 1;
-                if (currentRetry >= retry) {
-                    status = 200;
-                }
-            }
-            if (timeout != null && timeout > 0 && currentRetry < retry) {
-                try {
-                    Thread.sleep(timeout * 1_000);
-                } catch (Exception ex) {
-                    //intentionally left blank
-                }
-            }
-            request.setModule("endpoint module");
-            request.setDate(new Date());
-            request.setParty("eMSP");
-            request.setVersion("ocpi v2.2.1");
-            request.setData("max retry:" + retry + ", retry: " + currentRetry + ", status:" + status);
-            request.setUid(uid);
-            repository.save(request);
-            if (status != 200) {
-                return ResponseEntity.status(status).body(null);
-            }
+        status = service.simulateJitter(uid, retry, status, timeout);
+        if(status != 200){
+            return ResponseEntity.status(status).body(null);
         }
         // validate Token A
         Endpoints endpoints = new Endpoints();
