@@ -29,13 +29,20 @@ public class EndpointController {
             @RequestHeader(name = "Authorization", required = false) String token,
             @RequestParam(name = "status", required = false) Integer status,
             @RequestParam(name = "retry", required = false) Integer retry,
+            @RequestParam(name = "timeout", required = false) Integer timeout,
             @RequestParam(name = "uid", required = false) String uid) {
 
         if (token == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
         if (status != null && uid != null && retry != null) {
-
+            if (timeout != null && timeout > 0) {
+                try {
+                    Thread.sleep(timeout * 1_000);
+                } catch (Exception ex) {
+                    //intentionally left blank
+                }
+            }
             Integer currentRetry = 1;
             List<Request> requests = repository.findByUidOrderByDateAsc(uid);
             Request request = new Request();
@@ -84,13 +91,20 @@ public class EndpointController {
             @RequestHeader(name = "Authorization", required = false) String token,
             @RequestParam(name = "status", required = false) Integer status,
             @RequestParam(name = "retry", required = false) Integer retry,
+            @RequestParam(name = "timeout", required = false) Integer timeout,
             @RequestParam(name = "uid", required = false) String uid) {
 
         if (token == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
         if (status != null && uid != null && retry != null) {
-
+            if (timeout != null && timeout > 0) {
+                try {
+                    Thread.sleep(timeout * 1_000);
+                } catch (Exception ex) {
+                    //intentionally left blank
+                }
+            }
             Integer currentRetry = 1;
             List<Request> requests = repository.findByUidOrderByDateAsc(uid);
             Request request = new Request();
