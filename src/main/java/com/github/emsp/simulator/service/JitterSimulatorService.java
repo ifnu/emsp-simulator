@@ -28,7 +28,8 @@ public class JitterSimulatorService {
                     status = 200;
                 }
             }
-            if (timeout != null && timeout > 0 && currentRetry < retry) {
+            timeout = timeout == null ? 0 : timeout;
+            if (timeout > 0 && currentRetry < retry) {
                 try {
                     Thread.sleep(timeout * 1_000);
                 } catch (Exception ex) {
@@ -39,7 +40,8 @@ public class JitterSimulatorService {
             request.setDate(new Date());
             request.setParty("eMSP");
             request.setVersion("ocpi v2.1.1");
-            request.setData("max retry:" + retry + ", retry: " + currentRetry + ", status:" + status);
+            request.setData(
+                    "max retry:" + retry + ", retry: " + currentRetry + ", status:" + status + ", timeout=" + timeout);
             request.setUid(uid);
             repository.save(request);
             return status;
@@ -57,14 +59,16 @@ public class JitterSimulatorService {
                     status = 200;
                 }
             }
-            if (timeout != null && timeout > 0 && currentRetry < retry) {
+            timeout = timeout == null ? 0 : timeout;
+            if (timeout > 0 && currentRetry < retry) {
                 try {
                     Thread.sleep(timeout * 1_000);
                 } catch (Exception ex) {
                     // intentionally left blank
                 }
             }
-            request.setData("max retry:" + retry + ", retry: " + currentRetry + ", status:" + status + ", " + request.getData());
+            request.setData("max retry:" + retry + ", retry: " + currentRetry + ", status:" + status + ", timeout="
+                    + timeout + ", " + request.getData());
             repository.save(request);
             return status;
         }
