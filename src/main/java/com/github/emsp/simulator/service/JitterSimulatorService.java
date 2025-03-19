@@ -35,6 +35,8 @@ public class JitterSimulatorService {
                 } catch (Exception ex) {
                     // intentionally left blank
                 }
+            } else {
+                timeout = 0;
             }
             request.setModule("endpoint module");
             request.setDate(new Date());
@@ -66,6 +68,8 @@ public class JitterSimulatorService {
                 } catch (Exception ex) {
                     // intentionally left blank
                 }
+            } else {
+                timeout = 0;
             }
             request.setData("max retry:" + retry + ", retry: " + currentRetry + ", status:" + status + ", timeout="
                     + timeout + ", " + request.getData());
