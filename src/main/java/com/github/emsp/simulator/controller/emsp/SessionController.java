@@ -47,14 +47,11 @@ public class SessionController {
         request.setUid(uid);
         request.setParty("eMSP");
         request.setVersion("ocpi v2.1.1");
-        request.setModule("sessions");
+        request.setModule("sessions module");
         request.setDate(new Date());
         request.setData("countryCode:" + countryCode + ", partyId:" + partyId + ", json:" + json);
         
         status = service.simulateJitter(uid, retry, status, timeout, request);
-
-        repository.save(request);
-
         if(status != 200){
             return ResponseEntity.status(status).body(null);
         }
@@ -82,14 +79,11 @@ public class SessionController {
         request.setUid(uid);
         request.setParty("eMSP");
         request.setVersion("ocpi v2.2.1");
-        request.setModule("sessions");
+        request.setModule("sessions module");
         request.setDate(new Date());
         request.setData("countryCode:" + countryCode + ", partyId:" + partyId + ", json:" + json);
                 
         status = service.simulateJitter(uid, retry, status, timeout, request);
-
-        repository.save(request);
-
         if(status != 200){
             return ResponseEntity.status(status).body(null);
         }

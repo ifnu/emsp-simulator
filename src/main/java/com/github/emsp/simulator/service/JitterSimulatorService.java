@@ -16,7 +16,7 @@ public class JitterSimulatorService {
     @Autowired
     private RequestRepository repository;
 
-    public Integer simulateJitter(String uid, Integer retry, Integer status, Integer timeout) {
+    public Integer simulateJitter(String module, String version, String uid, Integer retry, Integer status, Integer timeout) {
         if (status != null && uid != null && retry != null) {
 
             Integer currentRetry = 1;
@@ -38,10 +38,10 @@ public class JitterSimulatorService {
             } else {
                 timeout = 0;
             }
-            request.setModule("endpoint module");
+            request.setModule(module);
             request.setDate(new Date());
             request.setParty("eMSP");
-            request.setVersion("ocpi v2.1.1");
+            request.setVersion(version);
             request.setData(
                     "max retry:" + retry + ", retry: " + currentRetry + ", status:" + status + ", timeout=" + timeout);
             request.setUid(uid);

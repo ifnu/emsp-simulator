@@ -33,7 +33,7 @@ public class EndpointController {
         if (token == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
-        status = service.simulateJitter(uid, retry, status, timeout);
+        status = service.simulateJitter("endpoint module", "ocpi v2.1.1", uid, retry, status, timeout);
         if(status != 200){
             return ResponseEntity.status(status).body(null);
         }
@@ -71,7 +71,7 @@ public class EndpointController {
         if (token == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
-        status = service.simulateJitter(uid, retry, status, timeout);
+        status = service.simulateJitter("endpoint module", "ocpi v2.2.1", uid, retry, status, timeout);
         if(status != 200){
             return ResponseEntity.status(status).body(null);
         }
