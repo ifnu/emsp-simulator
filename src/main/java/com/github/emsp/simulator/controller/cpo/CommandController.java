@@ -18,14 +18,16 @@ import com.github.emsp.simulator.repository.RequestRepository;
 
 @RestController(value = "internalApiCommandController")
 public class CommandController {
+    
     @Autowired
     private RequestRepository repository;
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    @PostMapping("/v1/locations/{locationId}/remotestartinternal")
+    @PostMapping("/api/v1/locations/{locationId}/remotestartinternal")
     public ResponseEntity<RemoteCommandResult> postStartSession(
             @RequestBody LocationRemoteStartDto requestBody,
+            @RequestParam(required = false) String chargePointOwnerId,
             @PathVariable String locationId) {
 
         Request request = new Request();
@@ -35,7 +37,7 @@ public class CommandController {
         request.setUid(requestBody.getUid());
         request.setDate(new Date());
         try {
-            request.setData(objectMapper.writeValueAsString(requestBody));
+            request.setData("chargePointOwnerId:" + chargePointOwnerId + ", uniqueId:" + ", json:" + objectMapper.writeValueAsString(requestBody));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -48,11 +50,12 @@ public class CommandController {
         return ResponseEntity.ok().body(response);
     }
 
-    @PostMapping("/v1/locations/{locationId}/remotestopinternal/{sessionId}")
+    @PostMapping("/api/v1/locations/{locationId}/remotestopinternal/{sessionId}")
     public ResponseEntity<RemoteCommandResult> postStopSession(
             @PathVariable String locationId,
             @PathVariable String sessionId,
-            @RequestParam String uniqueId) {
+            @RequestParam(required = false) String uniqueId, 
+            @RequestParam(required = false) String chargePointOwnerId) {
 
         Request request = new Request();
         request.setModule("commands remotestopinternal");
@@ -60,12 +63,7 @@ public class CommandController {
         request.setVersion("N/A");
         request.setUid(uniqueId);
         request.setDate(new Date());
-        try {
-            request.setData("sessionId:" + sessionId + ", locationId:" + locationId);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        request.setData("sessionId:" + sessionId + ", locationId:" + locationId+ ", chargePointOwnerId:" + chargePointOwnerId + ", uniqueId:" + uniqueId);;
         repository.save(request);
 
         RemoteCommandResult response = new RemoteCommandResult();
@@ -74,11 +72,13 @@ public class CommandController {
         return ResponseEntity.ok().body(response);
     }
 
-    @PostMapping("/v1/locations/{locationId}/unlockconnectorinternal/{connectorId}")
+    @PostMapping("/api/v1/locations/{locationId}/unlockconnectorinternal/{connectorId}")
     public ResponseEntity<RemoteCommandResult> postUnlockConnector(
             @PathVariable String locationId,
             @PathVariable String connectorId,
-            @RequestParam String uniqueId) {
+            @RequestParam(required = false) String uniqueId, 
+            @RequestParam(required = false) String chargePointOwnerId
+            ) {
 
         Request request = new Request();
         request.setModule("commands unlockconnectorinternal");
@@ -86,12 +86,7 @@ public class CommandController {
         request.setVersion("N/A");
         request.setUid(uniqueId);
         request.setDate(new Date());
-        try {
-            request.setData("connectorId:" + connectorId + ", locationId:" + locationId);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        request.setData("connectorId:" + connectorId + ", locationId:" + locationId + ", chargePointOwnerId:" + chargePointOwnerId + ", uniqueId:" + uniqueId);
         repository.save(request);
         
         RemoteCommandResult response = new RemoteCommandResult();
