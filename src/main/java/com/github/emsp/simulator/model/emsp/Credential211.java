@@ -3,10 +3,18 @@ package com.github.emsp.simulator.model.emsp;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Credential211 {
-    private String token;
+
     private String url;
+
+    private String token;
+    
+    @JsonProperty("party_id")
     private String partyId;
+
+    @JsonProperty("country_code")
     private String countryCode;
+
+    @JsonProperty("business_details")
     private BusinessDetail businessDetails;
 
     public String getToken() {

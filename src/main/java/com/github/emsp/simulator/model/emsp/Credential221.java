@@ -3,8 +3,10 @@ package com.github.emsp.simulator.model.emsp;
 import java.util.List;
 
 public class Credential221 {
+    
     private String token;
     private String url;
+    private List<Role> roles;
 
     public String getToken() {
         return token;
@@ -30,5 +32,4 @@ public class Credential221 {
         this.roles = roles;
     }
 
-    private List<Role> roles;
 }
