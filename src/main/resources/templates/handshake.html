@@ -124,8 +124,12 @@
                     </div>
                     <div class="flex flex-col w-full ml-5 mt-10" x-show="handshakeResult.status === 'OK'">
                         <div>Handshake with CPO Result</div>
-                        <div>Invoking CPO version URL <span x-text="handshake.url"></span></div>
-                        <pre x-text="handshakeResult.data"></pre>
+                        <template x-for="step in handshakeResult.steps" :key="step.number">
+                            <div class="flex flex-col my-2 gap-2">
+                                <div x-text="step.number + '. ' + step.text"></div>
+                                <pre class="text-wrap" :class="step.status === 'OK' ? 'bg-emerald-100' : 'bg-rose-100'" x-text="step.data"></pre>
+                            </div>
+                        </template>
                     </div>
                 </div>
             </div>

@@ -76,8 +76,8 @@ public class CredentialController {
         Credential211 c = new Credential211();
         c.setToken(UUID.randomUUID().toString());
         c.setUrl(("https://emspsimulator.com/ocpi/emsp/2.1.1/versions"));
-        c.setCountryCode("ID");
-        c.setPartyId("IFN");
+        c.setCountryCode("NL");
+        c.setPartyId("ESR");
 
         BusinessDetail bd = new BusinessDetail();
         bd.setName("EMSP Simulator");
@@ -155,8 +155,8 @@ public class CredentialController {
         List<Role> roles = new ArrayList<>();
         c.setRoles(roles);
         Role r = new Role();
-        r.setCountryCode("ID");
-        r.setPartyId("IFN");
+        r.setCountryCode("NL");
+        r.setPartyId("ESR");
         r.setRole("EMSP");
 
         BusinessDetail bd = new BusinessDetail();

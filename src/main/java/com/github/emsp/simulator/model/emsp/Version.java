@@ -1,6 +1,6 @@
 package com.github.emsp.simulator.model.emsp;
 
-public class Version {
+public class Version implements Comparable<Version> {
     private String version;
     private String url;
 
@@ -26,6 +26,11 @@ public class Version {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    @Override
+    public int compareTo(Version other) {
+        return other.getVersion().compareTo(version);
     }
 
 }
