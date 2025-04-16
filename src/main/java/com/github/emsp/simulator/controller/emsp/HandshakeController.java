@@ -55,7 +55,7 @@ public class HandshakeController {
         try {
             step1Response = restClient.get()
                     .uri(request.getUrl())
-                    .header("Authorization", "token " + request.getTokenA())
+                    .header("Authorization", "Token " + request.getTokenA())
                     .header("Content-Type", "application/json")
                     .retrieve()
                     .body(new VersionResponse());
@@ -89,7 +89,7 @@ public class HandshakeController {
                 try {
                     step3Response = restClient.get()
                             .uri(latestVersion.getUrl())
-                            .header("Authorization", "token " + request.getTokenA())
+                            .header("Authorization", "Token " + request.getTokenA())
                             .header("Content-Type", "application/json")
                             .retrieve()
                             .body(new EndpointResponse());
@@ -153,7 +153,7 @@ public class HandshakeController {
                         try {
                             step4Response = restClient.post()
                                     .uri(credentialEndpoint.getUrl())
-                                    .header("Authorization", "token " + request.getTokenA())
+                                    .header("Authorization", "Token " + request.getTokenA())
                                     .header("Content-Type", "application/json")
                                     .body(requestBody)
                                     .retrieve()
