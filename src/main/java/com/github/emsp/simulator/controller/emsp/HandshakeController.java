@@ -131,7 +131,7 @@ public class HandshakeController {
                         role.setRole("EMSP");
                         BusinessDetail bd = new BusinessDetail();
                         Logo logo = new Logo();
-                        logo.setCategory("Logo");
+                        logo.setCategory("LOCATION");
                         logo.setHeight(100);
                         logo.setWidth(100);
                         logo.setThumbnail("https://emspsimulator.com/thumb.jpg");
