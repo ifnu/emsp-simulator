@@ -16,8 +16,8 @@ import com.github.emsp.simulator.model.cpo.LocationRemoteStartDto;
 import com.github.emsp.simulator.model.cpo.RemoteCommandResult;
 import com.github.emsp.simulator.repository.RequestRepository;
 
-@RestController(value = "internalApiCommandController")
-public class CommandController {
+@RestController
+public class CpoCommandController {
     
     @Autowired
     private RequestRepository repository;
