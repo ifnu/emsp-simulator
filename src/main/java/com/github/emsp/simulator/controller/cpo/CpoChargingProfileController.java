@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.emsp.simulator.entity.Request;
-import com.github.emsp.simulator.model.cpo.ChargingProfile;
+import com.github.emsp.simulator.model.common.ChargingProfile;
 import com.github.emsp.simulator.model.cpo.RemoteCommandResult;
 import com.github.emsp.simulator.repository.RequestRepository;
 
@@ -27,7 +27,7 @@ public class CpoChargingProfileController {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @GetMapping("/api/v1/transactions/{transactionId}/chargingprofile")
-    public ResponseEntity<RemoteCommandResult> getCharingProfile(
+    public ResponseEntity<RemoteCommandResult> getChargingProfile(
             @RequestParam(required = false) String uniqueId,
             @RequestParam(required = false) String duration,
             @PathVariable String transactionId) {

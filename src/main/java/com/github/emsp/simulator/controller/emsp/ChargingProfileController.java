@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.emsp.simulator.entity.Request;
+import com.github.emsp.simulator.model.emsp.ChargingProfileResult;
 import com.github.emsp.simulator.model.emsp.ResponseNoData;
 import com.github.emsp.simulator.model.emsp.Result;
 import com.github.emsp.simulator.repository.RequestRepository;
@@ -27,7 +28,7 @@ public class ChargingProfileController {
 
     @PostMapping("/ocpi/emsp/2.2.1/chargingprofiles/{sessionId}")
     public ResponseEntity<ResponseNoData> postChargingProfileV221(
-            @RequestBody Result result,
+            @RequestBody ChargingProfileResult result,
             @PathVariable String sessionId,
             @RequestHeader(name = "Authorization", required = false) String token) {
 
@@ -42,7 +43,7 @@ public class ChargingProfileController {
         request.setUid(sessionId);
         request.setDate(new Date());
         try {
-            request.setData(objectMapper.writeValueAsString(result));
+            request.setData("sessionId: " + sessionId + ", json: " + objectMapper.writeValueAsString(result));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -70,7 +71,7 @@ public class ChargingProfileController {
         request.setUid(sessionId);
         request.setDate(new Date());
         try {
-            request.setData(objectMapper.writeValueAsString(result));
+            request.setData("sessionId: " + sessionId + ", json: " + objectMapper.writeValueAsString(result));
         } catch (Exception e) {
             e.printStackTrace();
         }
