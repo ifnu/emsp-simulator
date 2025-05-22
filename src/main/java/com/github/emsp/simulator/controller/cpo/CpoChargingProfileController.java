@@ -62,7 +62,7 @@ public class CpoChargingProfileController {
         repository.save(request);
 
         RemoteCommandResult response = new RemoteCommandResult();
-        response.setReply("GET_CHARGING_PROFILE");
+        response.setReply("DELETE_CHARGING_PROFILE");
         response.setIsOk(true);
         return ResponseEntity.ok().body(response);
     }
@@ -73,7 +73,7 @@ public class CpoChargingProfileController {
             @RequestParam(required = false) String uniqueId,
             @PathVariable String transactionId) {
         Request request = new Request();
-        request.setModule("DELETE chargingprofile");
+        request.setModule("POST chargingprofile");
         request.setParty("CPO");
         request.setVersion("N/A");
         request.setUid(uniqueId);
@@ -87,7 +87,7 @@ public class CpoChargingProfileController {
         repository.save(request);
 
         RemoteCommandResult response = new RemoteCommandResult();
-        response.setReply("GET_CHARGING_PROFILE");
+        response.setReply("POST_CHARGING_PROFILE");
         response.setIsOk(true);
         return ResponseEntity.ok().body(response);
     }
